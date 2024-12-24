@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
-import { fetchImagesBySearchValue } from './api/gallery';
+import { fetchImagesBySearchValue, Image } from './api/gallery'; // Імпорт інтерфейсу Image
 import { noMatches } from './messages/toastMessages';
 
 import Section from './components/Section/Section';
@@ -13,36 +13,20 @@ import ImageModal from './components/ImageModal/ImageModal';
 import './App.css';
 import ErrorMessage from './components/ErrorMessage/ErrorMessage';
 
-interface GalleryImage {
-  id: string;
-  urls: {
-    small: string;
-    regular: string;
-  };
-  alt_description: string | null;
-  likes: number;
-  user: {
-    name: string;
-    profile_image?: {
-      small: string;
-    };
-  };
-}
-
 interface FetchImagesResponse {
-  results: GalleryImage[];
+  results: Image[]; 
   total_pages: number;
 }
 
 function App() {
   const [searchValue, setSearchValue] = useState<string | null>(null);
-  const [fetchedImages, setFetchedImages] = useState<GalleryImage[] | null>(null);
+  const [fetchedImages, setFetchedImages] = useState<Image[] | null>(null); 
   const [totalPages, setTotalPages] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<string | null>(null);
   const [page, setPage] = useState<number>(1);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [clickedImage, setClickedImage] = useState<GalleryImage | null>(null);
+  const [clickedImage, setClickedImage] = useState<Image | null>(null); 
 
   const fetchImages = async (searchValue: string, page: number): Promise<void> => {
     try {
@@ -82,8 +66,8 @@ function App() {
   };
 
   const onImageClick = (imageInfo: { src: string; description: string | null; likesCount: number; author: string; }): void => {
-    const image: GalleryImage = {
-      id: '', 
+    const image: Image = {
+      id: '',
       urls: {
         small: imageInfo.src,
         regular: imageInfo.src,
@@ -94,7 +78,7 @@ function App() {
         name: imageInfo.author,
       },
     };
-    setClickedImage(image); 
+    setClickedImage(image);
     openModal();
   };
 
@@ -122,19 +106,19 @@ function App() {
         {fetchedImages && <ImageGallery images={fetchedImages} onImageClick={onImageClick} />}
         {totalPages > 1 && totalPages !== page && <LoadMoreBtn onLoadMoreClick={onLoadMoreClick} />}
         <ImageModal
-  isOpen={isModalOpen}
-  onCloseModalClick={closeModal}
-  imageInfo={
-    clickedImage
-      ? {
-          src: clickedImage.urls.regular,
-          descr: clickedImage.alt_description || '',
-          author: clickedImage.user.name,
-          likes: clickedImage.likes,
-        }
-      : null
-  }
-/>
+          isOpen={isModalOpen}
+          onCloseModalClick={closeModal}
+          imageInfo={
+            clickedImage
+              ? {
+                  src: clickedImage.urls.regular,
+                  descr: clickedImage.alt_description || '',
+                  author: clickedImage.user.name,
+                  likes: clickedImage.likes,
+                }
+              : null
+          }
+        />
         {isLoading && <Loader />}
       </Section>
     </>

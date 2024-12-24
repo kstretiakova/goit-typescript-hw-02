@@ -1,18 +1,6 @@
 import React from 'react';
 import styles from './ImageCard.module.css';
-
-
-interface Image {
-  urls: {
-    small: string;
-    regular: string;
-  };
-  alt_description: string | null;
-  likes: number;
-  user: {
-    name: string;
-  };
-}
+import { Image } from '../../api/gallery'; 
 
 interface ImageInfo {
   src: string;
@@ -22,7 +10,7 @@ interface ImageInfo {
 }
 
 interface ImageCardProps {
-  image: Image;
+  image: Image; 
   onImageClick: (imageInfo: ImageInfo) => void;
 }
 
