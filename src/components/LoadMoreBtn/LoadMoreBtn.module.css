@@ -1,48 +1,51 @@
 .btn_wrap {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-  }
-  
-  .btn {
-    display: flex;
-    align-items: center;
-    column-gap: 10px;
-    height: 40px;
-    padding: 0 10px;
-    border: 1px solid transparent;
-    border-radius: 8px;
-    background-color: #ffc864;
-  
-    color: #111111;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
-      'Lucida Sans', Arial, sans-serif;
-    font-size: 18px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-  
-    transition: transform 250ms linear, background-color 250ms linear;
-  
-    &:hover,
-    &:focus {
-      outline: transparent;
-      background-color: #b58122;
-      transform: scale(1.05);
-    }
-  }
-  
-  .ico {
-    width: 20px;
-    height: 20px;
-    transition: color 250ms linear;
-  
-    color: #111111;
-  }
-  
-  /* .btn:hover .ico,
-  .btn:focus .ico {
-    color: #ffc864;
-  } */
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 24px; 
+  margin-bottom: 24px; 
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 12px; 
+  height: 45px; 
+  padding: 0 16px; 
+  border: 2px solid transparent;
+  border-radius: 10px; 
+  background-color: #90cc1f; 
+  color: #1a1a1a; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+  font-size: 18px;
+  font-weight: 600; 
+  letter-spacing: 0.1em;
+  text-transform: uppercase; 
+  transition: transform 200ms ease-in-out, background-color 250ms ease, box-shadow 250ms ease;
+  cursor: pointer; 
+}
+
+.btn:hover,
+.btn:focus {
+  outline: none;
+  background-color: #5dafdf; 
+  transform: scale(1.1); 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); 
+}
+
+.btn:active {
+  transform: scale(1.05); 
+}
+
+.ico {
+  width: 22px;
+  height: 22px;
+  color: #1a1a1a; 
+  transition: color 250ms ease-in-out;
+}
+
+.btn:hover .ico,
+.btn:focus .ico {
+  color: #fbff00; 
+}
