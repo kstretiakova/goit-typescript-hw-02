@@ -3,16 +3,27 @@ import { emptyFieldMessage } from '../../messages/toastMessages';
 
 import styles from './SearchBar.module.css';
 
-const SearchBar = ({ onSubmit }) => {
-  const handleSubmit = event => {
-    const inputValue = event.target.searchInput.value;
-    event.preventDefault();
+interface SearchBarProps {
+  onSubmit: (query: string) => void; 
+}
 
-    if (inputValue === '') return emptyFieldMessage();
+const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+    
+
+    const form = event.target as HTMLFormElement;
+    const input = form.elements.namedItem('searchInput') as HTMLInputElement;
+
+    const inputValue = input.value.trim();
+
+    if (!inputValue) {
+      emptyFieldMessage();
+      return;
+    }
 
     onSubmit(inputValue);
-
-    event.target.reset();
+    form.reset();
   };
 
   return (
