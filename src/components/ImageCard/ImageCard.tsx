@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './ImageCard.module.css';
 
-// Type definitions
+
 interface Image {
   urls: {
     small: string;
